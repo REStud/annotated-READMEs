@@ -8,6 +8,8 @@
 	// FIXME: read this from metadata of markdown
 	export const examples = [
 		{ms_number: '26460', title: 'Should Robots be Taxed?', noData: false, Stata: false},
+		{ms_number: '27118', title: 'Another title', noData: false, Stata: true},
+		{ms_number: '25364', title: 'A third example', noData: true, Stata: true},
 	]; 
 	function compareExample(x, y) {
 		return ( ( x.Stata == y.Stata ) && ( x.noData == y.noData ) );
