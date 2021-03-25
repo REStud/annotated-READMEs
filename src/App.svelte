@@ -1,10 +1,29 @@
 <script>
-	export let name;
-	import Readme from './26460.md';
+	import Example from './Example.svelte';
+  
+	export let Stata = false;
+	export let noData = false;
+	export const examples = [
+		{ms_number: '26460', title: 'Should Robots be Taxed?', noData: false, Stata: false},
+	];  
 </script>
 
 <main>
-	<Readme />
+	<div class="fork">
+	<label>
+		<input type=checkbox bind:checked={noData}>
+		I cannot include my data.
+	</label>
+	<label>
+		<input type=checkbox bind:checked={Stata}>
+		I am using Stata or R.
+	</label>
+	{#each examples as example}
+	{#if ( ( example.Stata == Stata ) && ( example.noData == noData ) )}
+	<Example {...example}/>
+	{/if}
+	{/each}
+	</div>
 </main>
 
 <style>
