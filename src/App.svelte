@@ -2,8 +2,8 @@
 	import Example from './Example.svelte';
   
 	export let properties = {
-		Stata: false;
-		noData: false;
+		Stata: false,
+		noData: false
 	};
 	// FIXME: read this from metadata of markdown
 	export const examples = [
@@ -27,7 +27,7 @@
 </div>
 {#each examples as example}
 	{#if compareExample(example, properties) }
-	<Example {...example}/>
+	<Example ms_number={example.ms_number} />
 	{/if}
 	{/each}
 </main>
