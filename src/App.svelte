@@ -5,6 +5,7 @@
 		Stata: false,
 		noData: false
 	};
+	let show = null;
 	// FIXME: read this from metadata of markdown
 	export const examples = [
 		{ms_number: '26460', title: 'Should Robots be Taxed?', noData: false, Stata: false},
@@ -14,6 +15,9 @@
 	function compareExample(x, y) {
 		return ( ( x.Stata == y.Stata ) && ( x.noData == y.noData ) );
 	};
+    function handleClick(ms_number) {
+		show = ms_number;
+	}
 </script>
 
 <main>
@@ -29,9 +33,14 @@
 </div>
 {#each examples as example}
 	{#if compareExample(example, properties) }
-	<Example ms_number={example.ms_number} />
+	<button on:click={() => handleClick(example.ms_number)}>
+	{example.title}
+	</button>
 	{/if}
 	{/each}
+	{#if !( show == null ) }
+	<Example ms_number={show} />
+	{/if}
 </main>
 
 <style>

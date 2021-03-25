@@ -15,15 +15,9 @@
     };
 
     // create an empty promise
-    let promise =  new Promise((success) => { success([]); });
-    function handleClick() {
-		promise = getMarkdown(ms_number);
-	}
+    let promise =  getMarkdown(ms_number);
 </script>
 
-<button on:click={handleClick}>
-    Load MS number {ms_number}.
-</button>
 <div>
 {#await promise}
 Loading MS number {ms_number}...
