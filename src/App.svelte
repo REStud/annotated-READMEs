@@ -1,29 +1,35 @@
 <script>
 	import Example from './Example.svelte';
   
-	export let Stata = false;
-	export let noData = false;
+	export let properties = {
+		Stata: false;
+		noData: false;
+	};
+	// FIXME: read this from metadata of markdown
 	export const examples = [
 		{ms_number: '26460', title: 'Should Robots be Taxed?', noData: false, Stata: false},
-	];  
+	]; 
+	function compareExample(x, y) {
+		return ( ( x.Stata == y.Stata ) && ( x.noData == y.noData ) );
+	};
 </script>
 
 <main>
 	<div class="fork">
 	<label>
-		<input type=checkbox bind:checked={noData}>
+		<input type=checkbox bind:checked={properties.noData}>
 		I cannot include my data.
 	</label>
 	<label>
-		<input type=checkbox bind:checked={Stata}>
+		<input type=checkbox bind:checked={properties.Stata}>
 		I am using Stata or R.
 	</label>
-	{#each examples as example}
-	{#if ( ( example.Stata == Stata ) && ( example.noData == noData ) )}
+</div>
+{#each examples as example}
+	{#if compareExample(example, properties) }
 	<Example {...example}/>
 	{/if}
 	{/each}
-	</div>
 </main>
 
 <style>
