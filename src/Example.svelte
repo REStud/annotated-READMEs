@@ -1,29 +1,24 @@
 <script>
-	import { onMount } from "svelte";
+	// FIXME: this only executes once
+	import { onMount, onDestroy } from "svelte";
 	import marked from 'marked';
 
     export let ms_number;
+	let markdown = '';
 
 	async function getMarkdown(ms_number) {
         const res = await fetch(ms_number + '.md');
-	    const markdown = await res.text();
-		if (res.ok) {
-			return markdown;
-		} else {
-			throw new Error(markdown);
-		}
+	    markdown = await res.text();
     };
 
     // create an empty promise
-    let promise =  getMarkdown(ms_number);
+	onMount(async () => getMarkdown(ms_number));
 </script>
 
 <div>
-{#await promise}
-Loading MS number {ms_number}...
-{:then markdown}
+{#if markdown}
 {@html marked(markdown)}
-{:catch error}
-Oops, an {error}!
-{/await}
+{:else}
+Loading MS number {ms_number}...
+{/if}
 </div>
