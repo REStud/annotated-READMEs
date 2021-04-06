@@ -1,36 +1,58 @@
 <script>
 	import Example from './Example.svelte';
+
+	export let software_menu = ['Stata', 'Matlab', 'R', 'Python', 'Julia', 'Fortran'];
   
 	export let properties = {
-		Stata: false,
-		noData: false
+		public_data: false,
+		software: []
 	};
+	function join(software) {
+		if (software.length === 1) return software[0];
+		return `${software.slice(0, -1).join(', ')} and ${software[software.length - 1]}`;
+	}
 	let show = null;
 	// FIXME: read this from metadata of markdown
 	export const examples = [
-		{ms_number: '26460', title: 'Should Robots be Taxed?', noData: false, Stata: false},
-		{ms_number: '27118', title: 'Another title', noData: false, Stata: true},
-		{ms_number: '25364', title: 'A third example', noData: true, Stata: true},
+		{ms_number: '26460', title: 'Should Robots be Taxed?', public_data: true, software: ['Matlab']},
+		{ms_number: '27118', title: 'Another title', public_data: false, software: ['Stata']},
+		{ms_number: '25364', title: 'A third example', public_data: true, software: ['Fortran']},
 	]; 
-	function compareExample(x, y) {
-		return ( ( x.Stata == y.Stata ) && ( x.noData == y.noData ) );
+	function intersection(arr1, arr2) {
+		return arr1.filter(value => arr2.includes(value));
 	};
+	function compareExample(x, y) {
+		let common_software = intersection(x.software, y.software);
+		return ( ( common_software.length > 0 ) && ( x.public_data == y.public_data ) );
+	};
+	// FIXME: button should work on second and later clicks
     function handleClick(ms_number) {
 		show = ms_number;
-	}
+	};
 </script>
 
 <main>
 	<div class="fork">
-	<label>
-		<input type=checkbox bind:checked={properties.noData}>
-		I cannot include my data.
-	</label>
-	<label>
-		<input type=checkbox bind:checked={properties.Stata}>
-		I am using Stata or R.
-	</label>
+		<h1>Check all that applies</h1>
+		<div class="container">
+			<h2>Data used</h2>
+			<label>
+				<input type=checkbox bind:checked={properties.public_data}>
+				My data is publicly available
+			</label>
+		</div>
+		<div class="container">
+			<h2>Software used</h2>
+			{#each software_menu as tool}
+			<label>
+				<input type=checkbox bind:group={properties.software} value={tool}>
+				{tool}
+			</label>
+		{/each}		
+	</div>
 </div>
+<div class="content">
+	<h1>Relevant examples of replication packages</h1>
 {#each examples as example}
 	{#if compareExample(example, properties) }
 	<button on:click={() => handleClick(example.ms_number)}>
@@ -41,6 +63,7 @@
 	{#if !( show == null ) }
 	<Example ms_number={show} />
 	{/if}
+</div>
 </main>
 
 <style>
