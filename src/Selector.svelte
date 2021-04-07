@@ -13,8 +13,8 @@
 	export let show = null;
 	export const examples = [
 		{ms_number: '26460', title: 'Should Robots be Taxed?', data: ['public'], software: ['Matlab']},
-		{ms_number: '27118', title: 'Another title', data: [], software: ['Stata', 'Matlab']},
-		{ms_number: '25364', title: 'A third example', data: [], software: ['Fortran']},
+		{ms_number: '27118', title: 'Improving Management with Individual and Group-Based Consulting: Results from a Randomized Experiment in Colombia', data: ['public', 'own', 'confidential'], software: ['Stata']},
+		{ms_number: '25364', title: 'Default Effects and Follow-on Behaviour: Evidence from an Electricity Pricing Program', data: ['confidential'], software: ['R']},
 	]; 
 	export let properties = {
 		data: [],
