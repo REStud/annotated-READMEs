@@ -1,5 +1,4 @@
 build:
 	npm run build
-	cp -Rf public docs
-	git add docs/
+	git add public/
 	git commit -m "Build site with Svelte"
