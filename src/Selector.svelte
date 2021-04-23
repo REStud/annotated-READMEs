@@ -15,6 +15,9 @@
 		{ms_number: '26460', title: 'Should Robots be Taxed?', data: ['public'], software: ['Matlab']},
 		{ms_number: '27118', title: 'Improving Management with Individual and Group-Based Consulting: Results from a Randomized Experiment in Colombia', data: ['public', 'own', 'confidential'], software: ['Stata']},
 		{ms_number: '25364', title: 'Default Effects and Follow-on Behaviour: Evidence from an Electricity Pricing Program', data: ['confidential'], software: ['R']},
+		{ms_number: '28192', title: 'Uncertainty in the Hot Hand Fallacy: Detecting Streaky Alternatives to Random Bernoulli Sequences', data: ['public', 'confidential'], software: ['R']},
+		{ms_number: '26684', title: 'A Theory of Foreign Exchange Interventions', data: ['own'], software: ['Matlab']},
+		{ms_number: '23483', title: 'Workforce Composition, Productivity, and Labor Regulations in a Compensating Differentials Theory of Informality', data: ['public'], software: ['Matlab', 'Stata']},
 	]; 
 	export let properties = {
 		data: [],
