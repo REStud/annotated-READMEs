@@ -10,7 +10,6 @@
 	};
 
 	export let software_menu = ['Stata', 'Matlab', 'R', 'Python', 'Julia', 'Fortran'];
-	export let show = null;
 	export const examples = [
 		{ms_number: '26460', title: 'Should Robots be Taxed?', data: ['public'], software: ['Matlab']},
 		{ms_number: '27118', title: 'Improving Management with Individual and Group-Based Consulting: Results from a Randomized Experiment in Colombia', data: ['public', 'own', 'confidential'], software: ['Stata']},
@@ -34,9 +33,9 @@
 	};
 </script>
 
-<h1>Check all that applies</h1>
-<div class="container">
+<div class="column">
     <h2>Data used</h2>
+	<h3>Check all that apply</h3>
     <label>
         <input type=checkbox bind:group={properties.data} value='public'>
         My data is publicly available
@@ -50,8 +49,9 @@
         I am using confidential/proprietary data
     </label>
 </div>
-<div class="container">
+<div class="column">
     <h2>Software used</h2>
+	<h3>Check all that apply</h3>
     {#each software_menu as tool}
     <label>
         <input type=checkbox bind:group={properties.software} value={tool}>
@@ -69,34 +69,3 @@
 	{/if}
 	{/each}
 </div>
-
-<style>
-	main {
-		font-family: 'Open Sans', sans-serif;
-		text-align: left;
-		padding: 1em;
-		max-width: 420px;
-		margin: 0 auto;
-	}
-
-	:global(h1) {
-		color: #9b2701;
-		font-size: 2em;
-		font-weight: 200;
-	}
-
-	:global(annotate) {
-		vertical-align: super;  
-		display: inline-block;
-		color: #5003a8;
-		font-family: 'Caveat', cursive;
-		font-size: 1.2em;
-		font-weight: 200;
-	}
-
-	@media (min-width: 720px) {
-		main {
-			max-width: 540px;
-		}
-	}
-</style>
