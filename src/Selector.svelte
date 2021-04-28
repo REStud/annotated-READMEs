@@ -59,8 +59,8 @@
     </label>
 {/each}		
 </div>
-<div class="container">
-<h1>Relevant examples of replication packages</h1>
+<div class="column">
+<h2>Relevant examples of replication packages</h2>
 {#each examples as example}
 	{#if compareExample(example, properties) }
 	<button on:click={() => sendMS(example.ms_number)}>
