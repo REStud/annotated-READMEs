@@ -5,16 +5,23 @@
 
     let ms_number = params.ms_number;
 	let journal = params.journal;
-	let markdown = fetch(journal + '/' + ms_number + '.md').text();
+	async function fetchPackage() {
+		let res = await fetch(journal + '/' + ms_number + '.md')
+		let markdown = await res.text();
+		return markdown;
+	}
+	const promise = fetchPackage();
 </script>
 
 <main>
 	<p>The current page is: {$location}</p>
 <div class="content">
-{#if markdown}
-{@html marked(markdown)}
-{:else}
-Loading MS number {ms_number}...
-{/if}
+	{#await promise}
+	<p>Loading MS number {ms_number}...	</p>
+{:then markdown}
+	{@html marked(markdown)}
+{:catch error}
+	<p style="color: red">{error.message}</p>
+{/await}	
 </div>
 </main>
