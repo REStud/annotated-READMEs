@@ -1,5 +1,4 @@
 <script>
-	import {location} from 'svelte-spa-router';
 	export let params = {};
 	import marked from 'marked';
 
@@ -14,7 +13,6 @@
 </script>
 
 <main>
-	<p>The current page is: {$location}</p>
 <div class="content">
 	{#await promise}
 	<p>Loading MS number {ms_number}...	</p>
