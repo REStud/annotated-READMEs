@@ -1,15 +1,5 @@
 <script>
-	import { createEventDispatcher } from 'svelte';
-
-	const dispatch = createEventDispatcher();
-
-	function sendMS(journal, ms_number) {
-		dispatch('message', {
-			journal: journal,
-			ms_number: ms_number,
-		});
-	};
-
+	import {push} from 'svelte-spa-router';
 	export let software_menu = ['Stata', 'Matlab', 'R', 'Python', 'Julia', 'Fortran'];
 	export const examples = [
 		{journal: 'restud', ms_number: '26460', title: 'Should Robots be Taxed?', data: ['public'], software: ['Matlab']},
@@ -64,7 +54,7 @@
 <h2>Relevant examples of replication packages</h2>
 {#each examples as example}
 	{#if compareExample(example, properties) }
-	<button on:click={() => sendMS(example.journal, example.ms_number)}>
+	<button on:click={() => push('/package/' + example.journal + '/' +example.ms_number)}>
 	{example.title}
 	</button>
 	{/if}

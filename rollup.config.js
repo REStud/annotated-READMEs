@@ -39,10 +39,6 @@ export default {
 	},
 	plugins: [
 		svelte({
-				// 2. add '.md', to the extensions  
-				extensions: ['.svelte','.md'],
-				// 3. add markdown preprocessor
-				preprocess: markdown(),
 	  			compilerOptions: {
 				// enable run-time checks when not in production
 				dev: !production
