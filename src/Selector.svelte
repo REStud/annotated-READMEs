@@ -3,20 +3,21 @@
 
 	const dispatch = createEventDispatcher();
 
-	function sendMS(ms_number) {
+	function sendMS(journal, ms_number) {
 		dispatch('message', {
+			journal: journal,
 			ms_number: ms_number,
 		});
 	};
 
 	export let software_menu = ['Stata', 'Matlab', 'R', 'Python', 'Julia', 'Fortran'];
 	export const examples = [
-		{ms_number: '26460', title: 'Should Robots be Taxed?', data: ['public'], software: ['Matlab']},
-		{ms_number: '27118', title: 'Improving Management with Individual and Group-Based Consulting: Results from a Randomized Experiment in Colombia', data: ['public', 'own', 'confidential'], software: ['Stata']},
-		{ms_number: '25364', title: 'Default Effects and Follow-on Behaviour: Evidence from an Electricity Pricing Program', data: ['confidential'], software: ['R']},
-		{ms_number: '28192', title: 'Uncertainty in the Hot Hand Fallacy: Detecting Streaky Alternatives to Random Bernoulli Sequences', data: ['public', 'confidential'], software: ['R']},
-		{ms_number: '26684', title: 'A Theory of Foreign Exchange Interventions', data: ['own'], software: ['Matlab']},
-		{ms_number: '23483', title: 'Workforce Composition, Productivity, and Labor Regulations in a Compensating Differentials Theory of Informality', data: ['public'], software: ['Matlab', 'Stata']},
+		{journal: 'restud', ms_number: '26460', title: 'Should Robots be Taxed?', data: ['public'], software: ['Matlab']},
+		{journal: 'restud', ms_number: '27118', title: 'Improving Management with Individual and Group-Based Consulting: Results from a Randomized Experiment in Colombia', data: ['public', 'own', 'confidential'], software: ['Stata']},
+		{journal: 'restud', ms_number: '25364', title: 'Default Effects and Follow-on Behaviour: Evidence from an Electricity Pricing Program', data: ['confidential'], software: ['R']},
+		{journal: 'restud', ms_number: '28192', title: 'Uncertainty in the Hot Hand Fallacy: Detecting Streaky Alternatives to Random Bernoulli Sequences', data: ['public', 'confidential'], software: ['R']},
+		{journal: 'restud', ms_number: '26684', title: 'A Theory of Foreign Exchange Interventions', data: ['own'], software: ['Matlab']},
+		{journal: 'restud', ms_number: '23483', title: 'Workforce Composition, Productivity, and Labor Regulations in a Compensating Differentials Theory of Informality', data: ['public'], software: ['Matlab', 'Stata']},
 	]; 
 	export let properties = {
 		data: [],
@@ -63,7 +64,7 @@
 <h2>Relevant examples of replication packages</h2>
 {#each examples as example}
 	{#if compareExample(example, properties) }
-	<button on:click={() => sendMS(example.ms_number)}>
+	<button on:click={() => sendMS(example.journal, example.ms_number)}>
 	{example.title}
 	</button>
 	{/if}

@@ -4,14 +4,16 @@
 	import marked from 'marked';
 
     export let ms_number;
+	export let journal;
 	let markdown = '';
 
-	async function getMarkdown(ms_number) {
-        const res = await fetch(ms_number + '.md');
+	async function getMarkdown(journal, ms_number) {
+        const res = await fetch(journal + '/' + ms_number + '.md');
 	    markdown = await res.text();
     };
 	function handleMessage(event) {
-		getMarkdown(event.detail.ms_number);
+		getMarkdown(event.detail.journal,
+			event.detail.ms_number);
 	};
 </script>
 
