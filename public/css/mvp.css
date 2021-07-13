@@ -215,6 +215,12 @@ h6 {
     line-height: var(--line-height);
 }
 
+h1 {
+    background-color: var(--color-accent);
+    margin: 0 0.1rem;
+    padding: 0 0.5rem;
+}
+
 mark {
     padding: 0.1rem;
 }
